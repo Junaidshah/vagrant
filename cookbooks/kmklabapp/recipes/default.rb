@@ -14,7 +14,7 @@ execute 'unlink /etc/localtime' do
      not_if { File.symlink?('/etc/localtime') }
 end
 
-link '/usr/share/zoneinfo/node['kmklabapp']['config']['time_zone']' do
+link node['kmklabapp']['config']['time_zone'] do
   to '/etc/localtime'
 end
 
