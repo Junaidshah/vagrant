@@ -1,0 +1,15 @@
+<VirtualHost <%= node['kmklabapp']['config']['server_ip'] %>:80>
+ServerName <%= node['kmklabapp']['config']['server_name'] %>
+ProxyPass         /  http://localhost:<%= node['kmklabapp']['config']['app_default_port'] %>/
+ProxyPassReverse  /  http://localhost:<%= node['kmklabapp']['config']['app_default_port'] %>/
+ProxyPreserveHost On
+<Location "/">
+<% if node['apache']['version'] == "2.4" %>
+    Require all granted
+<% else %>
+    Order allow,deny
+    Allow from all
+<% end %>
+</Location>
+CustomLog <%= node['kmklabapp']['config']['apache_log_location'] %> combined
+</VirtualHost>

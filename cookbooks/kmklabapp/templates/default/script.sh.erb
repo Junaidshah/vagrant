@@ -1,0 +1,2 @@
+#!/bin/bash
+/usr/bin/pgrep -f <%= node['kmklabapp']['config']['script_name'] %> || /usr/bin/nohup /usr/bin/python <%= node['kmklabapp']['config']['app_script'] %> &
