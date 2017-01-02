@@ -43,7 +43,7 @@ end
 
 logrotate_app 'kmklabsApp' do
   path      [node['kmklabapp']['config']['app_cron_log']]
-  frequency 'hourly'
+  frequency 'daily'
   create    '644 root kmklab'
   rotate    7
 end
