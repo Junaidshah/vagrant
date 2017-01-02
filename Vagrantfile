@@ -34,13 +34,14 @@ Vagrant.configure("2") do |config|
          :server_name => "devops.kmklabs.dev",
          :app_default_port => "5000",
          :apache_log_location => "/var/log/httpd/devops.kmklabs.dev.log",
-         :app_cron_log => "/tmp/app.py_status_log"
+         :app_cron_log => "/tmp/app.py_status_log",
+         :time_zone => "UTC"
      },
       :dependencies => {
         :packages => [ "Flask", "Werkzeug" ]
       }
-   } 
-}
+    } 
+  } 
   end
   config.vm.network "private_network", ip: "10.10.10.20"
   config.vm.provider "virtualbox" do |vb|

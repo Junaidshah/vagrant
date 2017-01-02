@@ -7,11 +7,24 @@
 # All rights reserved - Do Not Redistribute
 #
 
+#Set the timezone to UTC
+execute 'unlink /etc/localtime' do
+     cwd Chef::Config[:file_cache_path]
+     command 'unlink /etc/localtime'
+     not_if { File.symlink?('/etc/localtime') }
+end
+
+link '/usr/share/zoneinfo/node['kmklabapp']['config']['time_zone']' do
+  to '/etc/localtime'
+end
+
+
 #Including the recipes that this recipe would need to include to get python, python pip installed. I have also included an apache recipe which will help us proxy the application to port 80.
 include_recipe 'python'
 include_recipe "python::pip"
 include_recipe "kmklabapp::apache"
 
+#Install the dependencies of the application app.py.
 if !node['kmklabapp']['dependencies']['packages'].nil?
   node['kmklabapp']['dependencies']['packages'].each do |pip_packages| 
       python_pip pip_packages do
