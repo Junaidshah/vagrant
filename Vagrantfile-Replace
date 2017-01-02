@@ -1,5 +1,6 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "centos-6.8-x86_64"
+  config.vm.box = "junaidsh/centos-6.8-x86_64"
+  config.vm.box_url = "https://atlas.hashicorp.com/junaidsh/boxes/centos-6.8-x86_64"
   config.vm.synced_folder "..", "/vagrant", :owner => "vagrant"
   config.vm.provision "chef_solo" do |chef|
    chef.node_name = "kmklabsnode01"
