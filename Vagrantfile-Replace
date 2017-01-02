@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
          :app_default_port => "5000",
          :apache_log_location => "/var/log/httpd/devops.kmklabs.dev.log",
          :app_cron_log => "/tmp/app.py_status_log",
-         :time_zone => "UTC"
+         :time_zone => "/usr/share/zoneinfo/UTC"
      },
       :dependencies => {
         :packages => [ "Flask", "Werkzeug" ]
